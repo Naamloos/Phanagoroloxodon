@@ -67,7 +67,6 @@ namespace Phanagoroloxodon
                 Status = status
             });
             var response = await http.SendAsync(request);
-            // TODO figure out why this won't deserialize
             return await JsonSerializer.DeserializeAsync<Status>(await response.Content.ReadAsStreamAsync(), jsonSerializerOptions);
         }
     }
