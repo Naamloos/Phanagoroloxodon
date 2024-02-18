@@ -16,7 +16,7 @@ var mastodon = new Mastodon(new MastodonClientConfig()
 });
 
 // Posting a simple text status
-mastodon.PostStatusAsync("Hello world!");
+await mastodon.PostStatusAsync("Hello world!");
 ```
 
 It's really that simple. I hated how other libs did it so I decided to build my own.
