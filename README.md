@@ -12,7 +12,7 @@ The library is still very much in development, and thus is not available on Nuge
 var mastodon = new Mastodon(new MastodonClientConfig()
 {
     AccessToken = "your-token",
-	Instance = "yourinstance.social"
+    Instance = "yourinstance.social"
 });
 
 // Posting a simple text status
