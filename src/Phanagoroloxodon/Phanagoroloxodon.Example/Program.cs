@@ -41,7 +41,7 @@ namespace Phanagoroloxodon.Example
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{status.Account.Acct}:");
                     Console.ResetColor();
-                    Console.WriteLine($"{status.Content.Replace("\n", "")}\n\n");
+                    Console.WriteLine($"{status.SanitizedContent}\n{status.Url}\n\n");
                 }
             }
             else

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace Phanagoroloxodon.Entities
 
         [JsonPropertyName("content")]
         public string Content { get; set; }
+
+        public string SanitizedContent
+        {
+            get
+            {
+                var document = new HtmlDocument();
+                document.LoadHtml(Content);
+                return string.Join(" ", document.DocumentNode.ChildNodes.Select(x => x.InnerText));
+            }
+        }
 
         /// <summary>
         /// public, unlisted, private or direct
