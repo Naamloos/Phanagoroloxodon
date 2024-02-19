@@ -16,7 +16,25 @@ var mastodon = new Mastodon(new MastodonClientConfig()
 });
 
 // Posting a simple text status
-await mastodon.PostStatusAsync("Hello world!");
+var tootResponse = await mastodon.PostStatusAsync("Hello world!");
+if(!tootResponse.Success)
+{
+    // Leave error handling to the end user!
+    Console.WriteLine(tootResponse.Error);
+}
+
+// Fetching timeline
+var timelineResponse = await mastodon.GetPublicTimelineAsync();
+if(publicTimeline.Success)
+{
+    foreach(Status toot in timelineResponse.Value)
+    {
+        // Prints out last public toots to the console.
+        Console.WriteLine($"{toot.Account.Acct}:\n{toot.Content}\n\n");
+    }
+}
 ```
 
 It's really that simple. I hated how other libs did it so I decided to build my own.
+
+Since status contents are embedded in HTML I recommend combining Phanagoroloxodon with a library such as [HTML Agility Pack](https://html-agility-pack.net/). As of right now, Phanagoroloxodon does not do any cleanup for statuses, but this is planned to be added in the future.

@@ -38,7 +38,10 @@ namespace Phanagoroloxodon.Example
             {
                 foreach(var status in publicTimeline.Value!)
                 {
-                    Console.WriteLine($"{status.Account.Acct}: {status.Content.Replace("\n", "")}\n\n");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{status.Account.Acct}:");
+                    Console.ResetColor();
+                    Console.WriteLine($"{status.Content.Replace("\n", "")}\n\n");
                 }
             }
             else
