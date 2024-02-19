@@ -12,11 +12,11 @@ The library is still very much in development, and thus is not available on Nuge
 var mastodon = new Mastodon(new MastodonClientConfig()
 {
     AccessToken = "your-token",
-	Instance = "yourinstance.social"
+    Instance = "yourinstance.social"
 });
 
 // Posting a simple text status
-mastodon.PostStatusAsync("Hello world!");
+await mastodon.PostStatusAsync("Hello world!");
 ```
 
 It's really that simple. I hated how other libs did it so I decided to build my own.
