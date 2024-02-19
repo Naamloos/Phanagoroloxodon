@@ -1,6 +1,8 @@
 # Phanagoroloxodon
 More dead elephants. (.NET 8 library for Mastodon)
 
+Phanagoroloxodon was made because all the existing libraries for .NET either are ancient or suck ass. As of right now, the focus is on the REST api, but support for websocket-based streaming API is planned.
+
 ## Namesake
 As Mastodon is named after an extinct species of elephants, I decided to name my library after an extinct elephant genus. Hence "more dead elephants". [Wikipedia: Phanagoroloxodon](https://en.wikipedia.org/wiki/Phanagoroloxodon).
 
