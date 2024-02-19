@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using Phanagoroloxodon.Entities;
+using Phanagoroloxodon.Entities.RequestBody;
+using System.Text.Json;
 
 namespace Phanagoroloxodon.Example
 {
@@ -23,13 +25,27 @@ namespace Phanagoroloxodon.Example
             var settings = JsonSerializer.Deserialize<Settings>(file)!;
             file.Close();
 
-            mastodon = new Mastodon((ref MastodonClientConfig config) =>
+            mastodon = new Mastodon(config =>
             {
                 config.AccessToken = settings.AccessToken;
                 config.Instance = settings.Instance;
+                config.OAuthScopes = Scopes.Read | Scopes.Write | Scopes.AdminRead | Scopes.AdminWrite | Scopes.Push;
             });
 
-            var postedStatus = await mastodon.PostStatusAsync("Aaaaaand it works! (?)");
+            var publicTimeline = await mastodon.GetPublicTimelineAsync();
+
+            if(publicTimeline.Success)
+            {
+                foreach(var status in publicTimeline.Value!)
+                {
+                    Console.WriteLine($"{status.Account.Acct}: {status.Content.Replace("\n", "")}\n\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine(publicTimeline.Error);
+            }
+
             Console.ReadKey();
         }
     }
