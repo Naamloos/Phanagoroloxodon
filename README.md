@@ -32,11 +32,9 @@ if(publicTimeline.Success)
     foreach(Status toot in timelineResponse.Value)
     {
         // Prints out last public toots to the console.
-        Console.WriteLine($"{toot.Account.Acct}:\n{toot.Content}\n\n");
+        Console.WriteLine($"{toot.Account.Acct}:\n{toot.SanitizedContent}\n\n");
     }
 }
 ```
 
-It's really that simple. I hated how other libs did it so I decided to build my own.
-
-Since status contents are embedded in HTML I recommend combining Phanagoroloxodon with a library such as [HTML Agility Pack](https://html-agility-pack.net/). As of right now, Phanagoroloxodon does not do any cleanup for statuses, but this is planned to be added in the future.
+It's really that simple. I hated how other libs did it so I decided to build my own. SanitizedContent may be somewhat inaccurate due to lack of testing, but it uses [HTML Agility Pack](https://html-agility-pack.net/) for getting a plaintext version of status content.
