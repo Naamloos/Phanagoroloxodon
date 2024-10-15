@@ -11,10 +11,10 @@ namespace Phanagoroloxodon.Entities
     public class Status
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = String.Empty;
 
         [JsonPropertyName("uri")]
-        public string Uri { get; set; }
+        public Uri? Uri { get; set; }
 
         [JsonPropertyName("created_at")]
         public DateTimeOffset CreatedAt { get; set; }
@@ -31,7 +31,7 @@ namespace Phanagoroloxodon.Entities
             {
                 var document = new HtmlDocument();
                 document.LoadHtml(Content);
-                return string.Join(" ", document.DocumentNode.ChildNodes.Select(x => x.InnerText));
+                return string.Join("", document.DocumentNode.ChildNodes.Select(x => x.InnerText));
             }
         }
 
@@ -39,16 +39,16 @@ namespace Phanagoroloxodon.Entities
         /// public, unlisted, private or direct
         /// </summary>
         [JsonPropertyName("visibility")]
-        public string Visibility { get; set; }
+        public string Visibility { get; set; } = String.Empty;
 
         [JsonPropertyName("sensitive")]
         public bool Sensitive { get; set; }
 
         [JsonPropertyName("spoiler_text")]
-        public string SpoilerText { get; set; }
+        public string SpoilerText { get; set; } = String.Empty;
 
         [JsonPropertyName("media_attachments")]
-        public MediaAttachment[] MediaAttachments { get; set; }
+        public MediaAttachment[] MediaAttachments { get; set; } = [];
 
         /// <summary>
         /// Contains a hash of what application was used. Optional.
@@ -57,13 +57,13 @@ namespace Phanagoroloxodon.Entities
         //public string Application {  get; set; }
 
         [JsonPropertyName("mentions")]
-        public StatusMention[] Mentions { get; set; }
+        public StatusMention[] Mentions { get; set; } = [];
 
         [JsonPropertyName("tags")]
-        public StatusTag[] Tags { get; set; }
+        public StatusTag[] Tags { get; set; } = [];
 
         [JsonPropertyName("emojis")]
-        public CustomEmoji[] Emojis { get; set; }
+        public CustomEmoji[] Emojis { get; set; } = [];
 
         [JsonPropertyName("reblogs_count")]
         public ulong ReblogsCount { get; set; }
@@ -75,13 +75,13 @@ namespace Phanagoroloxodon.Entities
         public ulong RepliesCount { get; set; }
 
         [JsonPropertyName("url")]
-        public string Url { get; set; }
+        public Uri? Url { get; set; } = null;
 
         [JsonPropertyName("in_reply_to_id")]
-        public string InReplyToId { get; set; }
+        public string InReplyToId { get; set; } = String.Empty;
 
         [JsonPropertyName("in_reply_to_account_id")]
-        public string InReplyToAccountId { get; set; }
+        public string InReplyToAccountId { get; set; } = String.Empty;
 
         [JsonPropertyName("reblog")]
         public Status? Reblog { get; set; }
@@ -93,13 +93,13 @@ namespace Phanagoroloxodon.Entities
         public PreviewCard? Card { get; set; }
 
         [JsonPropertyName("language")]
-        public string Language { get; set; }
+        public string Language { get; set; } = String.Empty;
 
         /// <summary>
         /// Returned instead of <see cref="Content"/> when this status is deleted, so a user may redraft from source text.
         /// </summary>
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get; set; } = String.Empty;
 
         [JsonPropertyName("edited_at")]
         public DateTimeOffset? EditedAt { get; set; }
@@ -120,6 +120,6 @@ namespace Phanagoroloxodon.Entities
         public bool Pinned { get; set; }
 
         [JsonPropertyName("filtered")]
-        public FilterResult[] Filtered { get; set; }
+        public FilterResult[] Filtered { get; set; } = [];
     }
 }
